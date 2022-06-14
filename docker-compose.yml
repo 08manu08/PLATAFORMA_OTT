@@ -1,0 +1,19 @@
+version: '3.7'
+
+services:
+   server_hls:
+    container_name: server
+    image: manudocker08/server-hls:latest
+    restart: always
+    networks:
+      - red
+    ports:
+      - 1935:1935
+      - 80:8080
+    volumes:
+      - ./app:/usr/local/nginx/html:ro
+      - ./config:/usr/local/nginx/conf/
+
+networks:
+  red:
+    driver: bridge
